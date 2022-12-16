@@ -13,11 +13,11 @@ workflows:
           dockerfile: Dockerfile
           executor: aws-ecr/default
           extra-build-args: '--compress'
-          new-profile-name: newProfileName
+          new-profile-name: cltest
           no-output-timeout: 20m
           path: pathToMyDockerfile
           platform: linux/amd64
-          profile-name: myProfileName
+          profile-name: cltest-2
           public-registry: false
           push-image: true
           region: AWS_DEFAULT_REGION
@@ -28,5 +28,5 @@ workflows:
           role-arn: 'arn:aws:iam::134676604775:user/circleci-user'
           set-repo-policy: true
           skip-when-tags-exist: false
-          source-profile: sourceProfileName
+          source-profile: cltest
           tag: 'latest,myECRRepoTag'
