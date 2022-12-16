@@ -1,0 +1,32 @@
+version: '2.1'
+orbs:
+  aws-ecr: circleci/aws-ecr@8.2.1
+workflows:
+  build_and_push_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-cli-version: latest
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          context: demo-stg
+          create-repo: true
+          dockerfile: Dockerfile
+          executor: aws-ecr/default
+          extra-build-args: '--compress'
+          new-profile-name: newProfileName
+          no-output-timeout: 20m
+          path: pathToMyDockerfile
+          platform: linux/amd64
+          profile-name: myProfileName
+          public-registry: false
+          push-image: true
+          region: AWS_DEFAULT_REGION
+          registry-id: AWS_ECR_ACCOUNT_URL
+          repo: myECRRepository
+          repo-policy-path: repo-policy.json
+          repo-scan-on-push: true
+          role-arn: 'arn:aws:iam::134676604775:user/circleci-user'
+          set-repo-policy: true
+          skip-when-tags-exist: false
+          source-profile: sourceProfileName
+          tag: 'latest,myECRRepoTag'
